@@ -1,0 +1,32 @@
+server:
+  port: 9999
+spring:
+  profiles:
+    active: dev
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.99:3306/hhq?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      filters: stat,wall,log4j
+      max-active: 200
+      max-wait: 10000
+      test-while-idle: true
+      time-between-eviction-runs-millis: 300000
+      min-evictable-idle-time-millis: 1800000
+
+pagehelper:
+  helper-dialect: mysql
+  params: countSql
+  resources: false
+logging:
+  level:
+    org.springframework.web: TRACE
+
+
+mybatis:
+  type-aliases-package: com.hhq.demo.nettywebsocket.vo
+  mappersLocations: classpath:mapper/*.xml
+
+

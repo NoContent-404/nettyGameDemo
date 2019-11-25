@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Chat</title>
+</head>
+<body>
+<form id="loginbox" action="" method="post" >
+    账号：<input type="" name="nick_name" /><br>
+    密码：<input type="" name="password" /><br>
+    <input type="button" onclick="login()" value="登录">
+</form>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    function login(){
+        //获取账号密码form表单
+        var loginbox = $('#loginbox').serialize();
+        $.ajax({
+            //url: 'url?pageNum='+self.pagination.current,
+            url:'/html/login',
+            type: 'POST',
+            data:loginbox,
+            async:false,
+            dataType: "json",
+            success: function(json){
+                console.log(json.toString())
+                if(json.success == true){
+                    console.log(json);
+                    // var s=new Toast("登录成功！");
+                    // s.show();
+                    setTimeout( function(){
+                        window.location.href = "create.html";
+                    }, 1500);
+                    sessionStorage.setItem("acction_id", json.data.acction_id);
+                }else{
+                    // var s=new Toast(json.errMsg);
+                    // s.show();
+                }
+
+            },
+            error: function(json){
+                console.log(json);
+                //测试用
+            },
+            complete:function(){
+            }
+        });
+    }
+</script>
+</html>

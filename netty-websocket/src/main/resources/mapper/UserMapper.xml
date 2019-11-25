@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hhq.demo.nettywebsocket.dao.UserDao">
+
+    <resultMap id="userInfo" type="com.hhq.demo.nettywebsocket.pojo.UserInfo" />
+
+
+    <select id="getUserInfoByNickName" resultMap="userInfo">
+     select * from t_account where nick_name=#{nick_name}
+    </select>
+
+</mapper>
